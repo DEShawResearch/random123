@@ -1,7 +1,7 @@
 /**
 @page "Release Notes"
 <dl>
-<dt>1.14 - ??? ??, 2020 </dt>
+<dt>1.14.0 - Jan 19, 2021 </dt>
 <dd><ul>
 <li> Correctly identify newer versions (16+) of IBM's XL compiler
 <li> Better support for MS Visual Studio 2015 (and hopefully later)
@@ -14,6 +14,9 @@
 <li> Suppress some warnings from gcc10:
           - don't use size_t if stddef hasn't been included
           - declare default copy-assignment and move-assignment operators in Engine.
+<li> CUDA should work better with non-gcc host compilers now.
+<li> Use currently recommended compile-time options to build with Metal.
+<li> Support clang on powerpc.
 </ul></dd>
 
 <dt>1.13 - Mar 22, 2019 </dt>
