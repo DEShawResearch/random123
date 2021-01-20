@@ -10,7 +10,7 @@ MARKDOWN_SUPPORT       = NO
 AUTOLINK_SUPPORT       = NO
 EXTRACT_ALL            = YES
 EXTRACT_STATIC         = YES
-INPUT                  = main.dox cbrng.dox releasenotes.dox \
+INPUT                  = main.md cbrng.dox releasenotes.dox \
 		../include/Random123 \
 		../include/Random123/conventional \
 		../include/Random123/features/sse.h \

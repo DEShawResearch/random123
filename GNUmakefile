@@ -4,6 +4,7 @@ all:
 	@echo Random123 is a header-only package.  There is nothing to build.
 	@echo 'However, "make install" understands prefix, DESTDIR, etc.,'
 	@echo 'and "make check" understands CFLAGS, CXXFLAGS, LDFLAGS, etc.'
+	@echo '"make html" will run doxygen to create docs/html'
 .PHONY: all
 
 check:
@@ -26,10 +27,22 @@ install-include:
 	cp -dr include/Random123 $(DESTDIR)$(includedir)
 .PHONY: install-include
 
-# Run doxygen to install html documentation
-install-html:
+# docs/main.md is the same as README.md, but it has a @mainpage
+# directive, and the @ref directives are *not* commented out.
+docs/main.md : README.md
+	echo @mainpage Random123: a Library of Counter-Based Random Number Generators > docs/main.md
+	sed -e 's/<!-- \([^-]*\)-->/\1/g' README.md >> docs/main.md
+
+# the html target removes and then recreates docs/html.
+html: docs/main.md
+	-[ -d docs/html ] && rm -rf docs/html
+	cd docs && doxygen
+.PHONY: html
+
+install-html: html
 	mkdir -p $(DESTDIR)$(docdir)
-	cd docs; (cat Doxyfile; echo OUTPUT_DIRECTORY=$(DESTDIR)$(docdir)) | doxygen -
+	-[ -d $(DESTDIR)$(docdir)/html ] && rm -rf $(DESTDIR)$(docdir)/html
+	cp -a docs/html $(DESTDIR)$(docdir)
 .PHONY: install-html
 
 # install-examples and install-tests copy files to

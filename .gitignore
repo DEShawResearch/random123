@@ -5,7 +5,8 @@
 *.air
 /.sconsign.dblite
 /objs
-docs/html
+/docs/html
+/docs/main.md
 # make leaves a lot of junk in examples/ and tests/
 # We really should create objects in a subdir!
 **/kat_c

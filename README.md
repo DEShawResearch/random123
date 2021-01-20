@@ -1,5 +1,9 @@
 # Random123: a Library of Counter-Based Random Number Generators
 
+<!-- Note that this file is both README.md and the doxygen mainpage.
+     It should be minimally processed to uncomment the @ref directives
+     before doxygen is run on it.  -->
+
 The Random123 library is a collection of counter-based random
 number generators (<!-- @ref CBRNG--> "CBRNGs") for CPUs (C and C++) and GPUs (CUDA and OpenCL), as described in
 <a href="http://dl.acm.org/citation.cfm?doid=2063405"><i>Parallel Random Numbers:  As Easy
@@ -59,8 +63,8 @@ sequence of samples of a uniformly distributed random variable.
 
 For all the CBRNGs in the Random123 library, the result and
 counter are the same type, specifically an array of *N* words,
-where words have a width of *W* bits, encapsulated in <!-- @ref
-arrayNxW--> "r123arrayNxW" structs, or equivalently, for C++, in
+where words have a width of *W* bits, encapsulated in 
+<!-- @ref arrayNxW--> "r123arrayNxW" structs, or equivalently, for C++, in
 the <!-- @ref r123::Array1x32--> "ArrayNxW" typedefs in the r123
 namespace.   Keys are usually also arrayMxW types, but sometimes M is
 a different size than the counter N (e.g. Philox keys have half the
@@ -126,24 +130,23 @@ SSE, AES-NI or compiler capabilities)
 
 A typical C++ use case might look like:
 
-```
-#include <Random123/philox.h>
 
-typedef r123::Philox4x32 RNG;
-RNG rng;
-RNG::ctr_type c={{}};
-RNG::ukey_type uk={{}};
-uk[0] = ???; // some user_supplied_seed
-RNG::key_type k=uk;
+    #include <Random123/philox.h>
 
-for(...){
-   c[0] = ???; // some loop-dependent application variable 
-   c[1] = ???; // another loop-dependent application variable 
-   RNG::ctr_type r = rng(c, k);
-   // use the random values in r for some operation related to
-   // this iteration on objectid
-}
-```
+    typedef r123::Philox4x32 RNG;
+    RNG rng;
+    RNG::ctr_type c={{}};
+    RNG::ukey_type uk={{}};
+    uk[0] = ???; // some user_supplied_seed
+    RNG::key_type k=uk;
+
+    for(...){
+       c[0] = ???; // some loop-dependent application variable 
+       c[1] = ???; // another loop-dependent application variable 
+       RNG::ctr_type r = rng(c, k);
+       // use the random values in r for some operation related to
+       // this iteration on objectid
+    }
 
 On each iteration, `r` contains an array of 4 32-bit random values that
 will not be repeated by any other call to `rng` as long as `c` and `k`
@@ -159,21 +162,21 @@ must be constructed from a `ukey_type`, as shown.
 ### The C API
 
 In C, the example above could be written as:
-```
-#include <Random123/philox.h>
 
-philox4x32_ctr_t c={{}};
-philox4x32_ukey_t uk={{}};
+    #include <Random123/philox.h>
 
-uk.v[0] = user_supplied_seed;
-philox4x32_key_t k = philox4x32keyinit(uk);
+    philox4x32_ctr_t c={{}};
+    philox4x32_ukey_t uk={{}};
 
-for(...){
-    c.v[0] = ???; /* some loop-dependent application variable */
-    c.v[1] = ???; /* another loop-dependent application variable */
-    philox4x32_ctr_t r = philox4x32(c, k);
-}
-```
+    uk.v[0] = user_supplied_seed;
+    philox4x32_key_t k = philox4x32keyinit(uk);
+
+    for(...){
+        c.v[0] = ???; /* some loop-dependent application variable */
+        c.v[1] = ???; /* another loop-dependent application variable */
+        philox4x32_ctr_t r = philox4x32(c, k);
+    }
+
 
 In C, access to the contents of the counter and key is through
 the fixed-size array member `v`.
