@@ -24,21 +24,23 @@ easier to parallelize, use minimal memory/cache resources, and
 require very little code.  On modern architectures, the
 Random123 CBRNGs require a few cycles per byte of random data
 returned and return random data in convenient sizes (arrays of
-two or four elements, each element is an unsigned integer of 32
-or 64 bits.  The range of random numbers is the full
+two or four elements, each of which is an unsigned integer of 32
+or 64 bits).  The range of random numbers is the full
 representable range of the 32 or 64 bit unsigned integer) 
 The \c <Random123/u01.h> header contains utility functions
 to convert 32- and 64-bit unsigned integers to open or closed
 ranges of single or double precision floating point numbers.
 
-The Random123 library was written by John Salmon and Mark Moraes.  It is
-available from
+The Random123 library was written by John Salmon and Mark Moraes.
+It is available at <a href="https://github.com/DEShawResearch/random123">
+https://github.com/DEShawResearch/random123</a>.  Please submit pull
+requests or open issues with suggestions, patches, etc.  You may also
+contact the authors directly at random123@deshawresearch.com.
+Archived releases are also 
+available from 
 <a href="http://deshawresearch.com/resources_random123.html">
 http://deshawresearch.com/resources_random123.html.</a>  Please see
-the @ref LICENSE "license" for terms and conditions.  Please 
-send
-feedback, including bug reports, suggestions, patches, etc. to
-random123@deshawresearch.com.
+the @ref LICENSE "LICENSE" for terms and conditions.
 
 \section overview Overview
 
@@ -103,7 +105,7 @@ there is nothing to compile before using it and nothing to link after
 you <c>\#include</c> it in your source files.  Simply direct your C or
 C++ compiler to find the header files in the \c include/ directory
 of the cloned repo and use the Random123
-header files, types and functions in your application.  
+header files, types, and functions in your application.
 
 There is a top-level GNUmakefile with "install" and "install-html"
 targets.  The former will copy header files to $(DESTDIR)$(includedir)
@@ -193,7 +195,7 @@ static memory per thread.  This is undesirable and not intentional,
 but we do not have a workaround other than to suggest adjusting memory
 allocation accordingly.
 
-The  
+The
 pi_cuda.cu and pi_cudapp.cu examples illustrate the use of CUDA.
 
 In a machine with different GPUs, the

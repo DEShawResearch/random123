@@ -32,15 +32,14 @@ ranges of single or double precision floating point numbers.
 
 The Random123 library was written by John Salmon and Mark Moraes.
 It is available at <a href="https://github.com/DEShawResearch/random123">
-https://github.com/DEShawResearch/random123</a>
+https://github.com/DEShawResearch/random123</a>.  Please submit pull
+requests or open issues with suggestions, patches, etc.  You may also
+contact the authors directly at random123@deshawresearch.com.
 Archived releases are also 
 available from 
 <a href="http://deshawresearch.com/resources_random123.html">
 http://deshawresearch.com/resources_random123.html.</a>  Please see
-the <!-- @ref LICENSE--> "LICENSE" for terms and conditions.  Please 
-send
-feedback, including bug reports, suggestions, patches, etc. to
-random123@deshawresearch.com.
+the <!-- @ref LICENSE--> "LICENSE" for terms and conditions.
 
 ## Overview
 
@@ -105,7 +104,7 @@ there is nothing to compile before using it and nothing to link after
 you `#include` it in your source files.  Simply direct your C or
 C++ compiler to find the header files in the `include/` directory 
 of the cloned repo and use the Random123
-header files, types and functions in your application.
+header files, types, and functions in your application.
 
 There is a top-level GNUmakefile with "install" and "install-html"
 targets.  The former will copy header files to $(DESTDIR)$(includedir)
@@ -184,14 +183,11 @@ the fixed-size array member `v`.
 All relevant functions in the C and C++ APIs for Random123 are declared
 as CUDA device functions if they are included in a CUDA kernel source file
 and compiled with a CUDA compiler (nvcc).  They can be used exactly
-as described/documented for regular C or C++ programs.  Note that
-CUDA device functions and host functions share the same namespace, so
-it is not currently possible to use Random123 functions in 
+as described/documented for regular C or C++ programs.  It is now
+possible to use Random123 functions in 
 both the host portion and the device portion of the same .cu source file.
-To work around this, you must compile Random123-using host code in
-a separate .c source file from your .cu device-resident code.
-The Nx32 forms are faster than the Nx64 variants on current (2011)
-32-bit GPU architectures.
+The Nx32 forms were faster than the Nx64 variants on
+32-bit GPU architectures in 2011, but we haven't measured this recently.
 
 It has been reported that Random123 uses 16 bytes of
 static memory per thread.  This is undesirable and not intentional,
@@ -338,7 +334,7 @@ variety of toolchains that are readily available to us.  Our
 current test environment includes:
 
 <ul>
-<li> Linux, gcc-5.2.0, 6.3.0, 8.1.0 using -march=native on Xeon hardware with
+<li> Linux, gcc-5.2.0, 6.3.0, 8.1.0, 10.1.0 using -march=native on Xeon hardware with
      AES and SSE4_2 and AVX2 support.
 <li> Linux, gcc-5.2.0 using -m32.
 <li> Linux, clang-8.0.0 with libc++ (8.0.0) on Xeon hardware.
@@ -346,7 +342,7 @@ current test environment includes:
 <li> Linux, Ubuntu 16.04(LTS) using the vendor supplied gcc toolchain (5.4.0-6ubuntu1-16.04.11).
 <li> Linux, Ubuntu 16.04(LTS) using OpenCL beignet 1.1.1-2 and https://github.com/intel/compute-runtime/releases/tag/19.07.12410
 <li> Linux, Ubuntu 18.04(LTS) with clang-11.0.1 and both libc++ and libstdc++.
-<li> Linux, icc-18.0.3 on Xeon hardware with AES, SSE4 and AVX2 support.
+<li> Linux, icc-18.0.3 and 19.1.2.254 on Xeon hardware with AES, SSE4 and AVX2 support.
 <li> Linux, NVIDIA CUDA 10.0.130 with GTX 980 and 1080, and Titan RTX (aka Turing) hardware.
 <li> MacOS, with Xcode-10.1 and Metal on a 2018 Mac mini.
 </ul>
@@ -382,6 +378,8 @@ Others have reported success on
 <li>Linux, Portland Group Compiler on Powerpc64 (BlueGene/Q)
 <li>Linux, IBM xlc on Powerpc64 (BlueGene/Q)
 <li>MacOS, Metal on x86_64 CPUs and AMD Radeon R9 M380 GPU
+<li>MacOS Sierra and Scientific Linux with Nvidia GPU and CUDA 8
+<li>Linux, on s390x
 </ul>
 
 ## Warnings
@@ -409,13 +407,15 @@ compiler at least.
 We welcome bug reports, new ports, success stories or any
 feedback to random123@deshawresearch.com
 
-We are grateful for contributions from the following users:
+We are grateful for contributed bug-fixes and portability enhancements from the following users:
 <ul>
 <li> Geoffrey Irving and Gabriel Rockefeller - BlueGene/Q and powerpc ports
 <li> Yan Zhou - MacOS and clang ports
 <li> David Lawrie - allowing 64-bit philox to compile for both host and device with CUDA
 <li> Bogdan Opanchuk - pointing out the inconsistent rotation constants in the implementation of threefry2xW in version 1.07 and earlier.
-<li> Tom Schoonjans - Support for Metal (Apple's successor to OpenCL).
+<li> Tom Schoonjans - Support for Metal (Apple's successor to OpenCL)
+<li> Karl Magdsick - documentation in uniform.hpp
+<li> KT Thompson - Visual Studio 2015 and ibm xlc compiler ports
 </ul>
 
 
