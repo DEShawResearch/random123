@@ -36,9 +36,7 @@ ranges of single or double precision floating point numbers.
 
 The Random123 library was written by John Salmon and Mark Moraes.
 It is available at <a href="https://github.com/DEShawResearch/random123">
-https://github.com/DEShawResearch/random123</a>.  Please submit pull
-requests or open issues with suggestions, patches, etc.  You may also
-contact the authors directly at random123@deshawresearch.com.
+https://github.com/DEShawResearch/random123</a>.
 Archived releases are also 
 available from 
 <a href="http://deshawresearch.com/resources_random123.html">
@@ -80,7 +78,7 @@ typedefs) begin either with `r123` or with one of the RNG family names, e.g.,
 `threefry`, `philox`, `ars`, `aesni`.  The RNG functions themselves have names like
 `philox4x32`.  C++ class names are capitalized, e.g., `Threefry4x32`.
 
-## <!--families--> The different families of Random123 generators
+## <!-- \anchor families--> The different families of Random123 generators
 
 Several families of CBRNGs are available in this version of the library:
 <ul>
@@ -407,8 +405,11 @@ compiler at least.
 
 ## Contributors
 
-We welcome bug reports, new ports, success stories or any
-feedback to random123@deshawresearch.com
+We welcome bug reports, bug fixes, ports,
+general feedback and other enhancements to the
+[issues](https://github.com/DEShawResearch/random123/issues) and 
+[pull requests](https://github.com/DEShawResearch/random123/pulls) pages of
+our [github repo](https://github.com/DEShawResearch/random123/).
 
 We are grateful for contributed bug-fixes and portability enhancements from the following users:
 <ul>
