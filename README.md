@@ -108,19 +108,19 @@ C++ compiler to find the header files in the `include/` directory
 of the cloned repo and use the Random123
 header files, types, and functions in your application.
 
-There is a top-level GNUmakefile with "install" and "install-html"
-targets.  The former will copy header files to $(DESTDIR)$(includedir)
-(default: /usr/local/include).  The latter will run doxygen, with
-OUTPUT_DIRECTORY=$(DESTDIR)$(docdir)/html (default: /usr/local/doc/Random123/html).
+Users and packagers are **STRONGLY ADVISED** run `make check` to
+compile and run the tests in `tests/` before using Random123 in an
+application (see <!-- @ref TestsREADME--> "tests/README").  Do not use
+the library if any tests fail.  (It is not a failure for a test to
+report that it cannot run because of missing hardware capabilities
+like 64bit multiply, SSE, AES-NI or compiler capabilities)
 
-In addition to the `include/` files which implement the library, the
-distribution also contains an `examples/` and a `tests/` directory.  Users are 
-**STRONGLY ADVISED** to compile and run the tests in `tests/` before using
-Random123 in an application (see <!-- @ref TestsREADME--> `tests/README`).
-Do not use the library if any tests fail.  (It is not a failure for
-a test to report that it cannot run because of missing
-hardware capabilities like 64bit multiply,
-SSE, AES-NI or compiler capabilities)
+The top-level GNUmakefile also has "install", "html", and
+"install-html" targets.  The former will copy header files to
+\$(DESTDIR)\$(includedir) (default: /usr/local/include).  The second
+will run doxygen, replacing anything in docs/html.  The last will
+install the documentation in \$(DESTDIR)\$(docdir)/html (default:
+/usr/local/doc/Random123/html).
 
 ## Usage
 

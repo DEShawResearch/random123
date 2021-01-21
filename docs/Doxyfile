@@ -21,7 +21,7 @@ INPUT                  = main.md cbrng.dox releasenotes.dox \
 
 #USE_MDFILE_AS_MAINPAGE =
 
-HTML_HEADER            = header.html
+#HTML_HEADER            = header.html
 HTML_TIMESTAMP         = YES
 GENERATE_LATEX         = NO
 MACRO_EXPANSION        = YES
