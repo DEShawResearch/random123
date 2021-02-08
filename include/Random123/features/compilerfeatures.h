@@ -208,16 +208,18 @@ added to each of the *features.h files, AND to examples/ut_features.cpp.
 #include "iccfeatures.h"
 #elif defined(__xlC__) || defined(__ibmxl__)
 #include "xlcfeatures.h"
+#elif defined(__PGI)
+#include "pgccfeatures.h"
 #elif defined(__SUNPRO_C) || defined(__SUNPRO_CC)
 #include "sunprofeatures.h"
 #elif defined(__OPEN64__)
 #include "open64features.h"
-#elif defined(__clang__)
+#elif defined(__clang__) || defined(__bgclang__)
 #include "clangfeatures.h"
+#elif defined(__FCC_VERSION) || defined(__FUJITSU)
+#include "fujitsufeatures.h"
 #elif defined(__GNUC__)
 #include "gccfeatures.h"
-#elif defined(__PGI)
-#include "pgccfeatures.h"
 #elif defined(_MSC_FULL_VER)
 #include "msvcfeatures.h"
 #else
