@@ -80,7 +80,8 @@ typedefs) begin either with `r123` or with one of the RNG family names, e.g.,
 `threefry`, `philox`, `ars`, `aesni`.  The RNG functions themselves have names like
 `philox4x32`.  C++ class names are capitalized, e.g., `Threefry4x32`.
 
-## <!-- @anchor families--> The different families of Random123 generators
+<!-- @anchor families-->
+## The different families of Random123 generators
 
 Several families of CBRNGs are available in this version of the library:
 <ul>
