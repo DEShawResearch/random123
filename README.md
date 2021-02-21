@@ -1,7 +1,7 @@
 # Random123: a Library of Counter-Based Random Number Generators
 
 <!-- Note that this file is both README.md and the doxygen mainpage.
-     It should be minimally processed to uncomment the @ref directives
+     It is minimally processed to uncomment the @ref directives
      before doxygen is run on it.  -->
 
 The Random123 library is a collection of counter-based random
@@ -36,7 +36,9 @@ ranges of single or double precision floating point numbers.
 
 The Random123 library was written by John Salmon and Mark Moraes.
 It is available at <a href="https://github.com/DEShawResearch/random123">
-https://github.com/DEShawResearch/random123</a>.
+https://github.com/DEShawResearch/random123</a> with documentation at
+<a href="https://deshawresearch.github.io/random123">
+https://deshawresearch.github.io/random123</a>.
 Archived releases are also 
 available from 
 <a href="http://deshawresearch.com/resources_random123.html">
@@ -78,7 +80,7 @@ typedefs) begin either with `r123` or with one of the RNG family names, e.g.,
 `threefry`, `philox`, `ars`, `aesni`.  The RNG functions themselves have names like
 `philox4x32`.  C++ class names are capitalized, e.g., `Threefry4x32`.
 
-## <!-- \anchor families--> The different families of Random123 generators
+## <!-- @anchor families--> The different families of Random123 generators
 
 Several families of CBRNGs are available in this version of the library:
 <ul>
@@ -89,7 +91,7 @@ See <!-- @ref--> r123::Threefry2x32, <!-- @ref--> r123::Threefry4x32, <!-- @ref-
 See <!-- @ref--> r123::Philox2x32, <!-- @ref--> r123::Philox4x32, <!-- @ref--> r123::Philox2x64, <!-- @ref--> r123::Philox4x64.
 The Nx64 forms are only available on hardware
 that supports 64-bit multiplication producing a 128-bit result.
-<li> <!@ref AESNI--> "AESNI" uses the Advanced Encryption Standard (AES) New Instruction,
+<li> <!-- @ref AESNI--> "AESNI" uses the Advanced Encryption Standard (AES) New Instruction,
 available on certain modern x86 processors (some models of Intel Westmere and Sandy Bridge,
 and AMD Interlagos, as of 2011).   AESNI CBRNGs can operate on four 32bit words (internally converting
 them to the 128bit SSE type needed by the AES-NI instructions, or on a single m128i "word", 
@@ -250,14 +252,14 @@ the Random123 package includes two C adapter interfaces
 to the <a href="http://www.gnu.org/s/gsl/">GNU Scientific Library (GSL).</a>
 
 <ul>
-<li>The <!--\ref--> GSL_MICRORNG macro allows the application to
+<li>The <!-- @ref--> GSL_MICRORNG macro allows the application to
 define a GSL random number generator.  It
 can be used with GSL random distributions but still provides the
 application with complete control over the RNG state (it is
 analogous to the MicroURNG class, in that it uses shorter
 periods, and is intended to be instantiated in large numbers for
 a few calls to the random distribution).
-<li>The <!--\ref--> GSL_CBRNG macro allows the application to create a GSL
+<li>The <!-- @ref--> GSL_CBRNG macro allows the application to create a GSL
 RNG with a completely conventional interface, sacrificing
 application control over the internal RNG state.
 </ul>
