@@ -67,7 +67,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p>The counter-based random number generators (CBRNGs) in the Random123 library are described in more detail in <a href="http://dl.acm.org/citation.cfm?doid=2063405"><em>Parallel Random Numbers: As Easy as 1, 2, 3</em> </a>, which was named the Best Paper at the ACM SC'11 International Conference on High Performance Computing, Networking, Storage, and Analysis. All the CBRNGs in the library conform to a consistent interface. Basically: </p><pre class="fragment">    value = CBRNGname(counter, key)
 </pre><p>Thus, with some care, they can be used interchangeably in applications. (Since code compiled with AES-NI instructions will result in an illegal instruction exception on processors without those instructions, Random123 provides a <a class="el" href="sse_8h.html#a0b35a046e85316295476d7d552411044">haveAESNI</a> function that can be used to detect the existence of AES at run-time; user code could use it to either report an error or substitute an alternative compatible CBRNG.)</p>
-<p>The API descriptions below are generic, but apply to all the different families of Random123 CBRNGs.</p>
+<p>The API descriptions below are generic, but apply to all the different <a class="el" href="index.html#families">families</a> of Random123 CBRNGs.</p>
 <h1><a class="anchor" id="arrays"></a>
 Fixed-size Array Types</h1>
 <p>Data is passed into and back from the Random123 functions as <a class="el" href="group__arrayNxW.html">r123arrayNxW</a> types; these types contain fixed-size arrays of W-bit types (<code>uintW_t</code> for the most part, but also a special r123m128i wrapper for the <a class="el" href="group__AESNI.html">ARS and AESNI</a> CBRNGs). The counter argument and the return value have the same type, referred to as <code>ctr_type</code> in C++, and <code>ctr_t</code> in C. The type of the key argument is referred to as <code>key_type</code> in C++, and <code>key_t</code> in C. For an <a class="el" href="group__arrayNxW.html">r123arrayNxW</a>, <code>r</code>, the data member <code>r.v</code> is an array of N elements, each of width W (each element is type <code>uintW_t</code> or an r123m128i wrapper object). C programs can access these elements as <code>r.v</code>[0], ... <code>r.v</code>[N-1] for the <code>uintW_t</code> types.</p>
@@ -146,7 +146,7 @@ C API</h1>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 21 2021 21:04:26 for Random123 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 21 2021 21:27:45 for Random123 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
