@@ -216,7 +216,7 @@ added to each of the *features.h files, AND to examples/ut_features.cpp.
 #include "open64features.h"
 #elif defined(__clang__) || defined(__bgclang__)
 #include "clangfeatures.h"
-#elif defined(__FCC_VERSION) || defined(__FUJITSU)
+#elif defined(__FCC_VERSION) || defined(__FUJITSU) || defined(_CRAYC)
 #include "fujitsufeatures.h"
 #elif defined(__GNUC__)
 #include "gccfeatures.h"
