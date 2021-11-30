@@ -51,13 +51,18 @@ typedef struct cuda_info {
 static CUDAInfo *cuda_init(const char *devstr)
 {
     CUDAInfo *tp;
-    int i, ndev, cores, devcores;
+    int i, ndev, cores, devcores, devdev;
     double cycles;
     CHECKNOTZERO(tp = (CUDAInfo *) malloc(sizeof(CUDAInfo)));
     CHECKCALL( cudaGetDeviceCount(&ndev) );
     devcores = 0;
-    if (devstr == NULL)
+    devdev = -1;
+    if (devstr == NULL) {
 	devstr = getenv("R123EXAMPLE_ENVCONF_CUDA_DEVICE");
+	if (devstr && devstr[0] >= '0' && devstr[0] <= '9' && devstr[1] == '\0') {
+	    devdev = devstr[0]-'0';
+	}
+    }
     for (i = 0; i < ndev; i++) {
 	struct cudaDeviceProp cu;
 	CHECKCALL( cudaGetDeviceProperties (&cu, i) );
@@ -89,7 +94,13 @@ static CUDAInfo *cuda_init(const char *devstr)
 	    // 6.1 (Pascal 10xx, Titan Xp, P40), 6.2 (Drive PX2 and Tegra)
 	    cores *= 128;
 	} else if (cu.major == 7) {
-	    // 7.[025] (Volta and Turing RTX 20[678]0, Titan RTX, Quadro RTX)
+	    // 7.[05] (Volta and Turing RTX 20[678]0, Titan RTX, Quadro RTX), 7.2 (Xavier Jetson)
+	    cores *= 64;
+	} else if (cu.major == 8 && cu.minor == 0) {
+	    // 8.0 (Ampere A100)
+	    cores *= 64;
+	} else if (cu.major == 8 && cu.minor == 6) {
+	    // 8.6 (Ampere RTX 30[56789]0, A[23456]000, A45000)
 	    cores *= 128;
 	} else {
 	    int coremultguess = 384;
@@ -101,7 +112,8 @@ static CUDAInfo *cuda_init(const char *devstr)
 	printf("  %d: maj %d min %d %s%s ( %d units @ %g MHz ECC=%d %d cores %g Gcycles/s)\n",
 	   i, cu.major, cu.minor, cu.name, cu.integrated ? " integrated" : "",
 	   cu.multiProcessorCount, cu.clockRate*1e-3, cu.ECCEnabled, cores, cycles*1e-9);
-	if (devstr && strstr(cu.name, devstr) == NULL) {
+	if ((devstr && strstr(cu.name, devstr) == NULL )||
+	    devdev >= 0 && i != devdev) {
 	    dprintf(("skipping device %s\n", cu.name));
 	    continue;
 	}
