@@ -204,6 +204,8 @@ added to each of the *features.h files, AND to examples/ut_features.cpp.
 #include "openclfeatures.h"
 #elif defined(__CUDACC__)
 #include "nvccfeatures.h"
+#elif defined(__HIPCC__)
+#include "hipfeatures.h"
 #elif defined(__ICC)
 #include "iccfeatures.h"
 #elif defined(__xlC__) || defined(__ibmxl__)
