@@ -81,7 +81,7 @@ inline R123_CUDA_DEVICE value_type assemble_from_u32(uint32_t *p32){
 
 /** @endcond */
 
-#ifdef __CUDA_ARCH__
+#if defined(__CUDA_ARCH__) || defined(__HIP_DEVICE_COMPILE__)
 /* CUDA can't handle std::reverse_iterator.  We *could* implement it
    ourselves, but let's not bother until somebody really feels a need
    to reverse-iterate through an r123array */
@@ -114,8 +114,8 @@ inline R123_CUDA_DEVICE value_type assemble_from_u32(uint32_t *p32){
     enum {static_size = _N};                                            \
     R123_CUDA_DEVICE reference operator[](size_type i){return v[i];}                     \
     R123_CUDA_DEVICE const_reference operator[](size_type i) const {return v[i];}        \
-    R123_CUDA_DEVICE reference at(size_type i){ if(i >=  _N) R123_THROW(std::out_of_range("array index out of range")); return (*this)[i]; } \
-    R123_CUDA_DEVICE const_reference at(size_type i) const { if(i >=  _N) R123_THROW(std::out_of_range("array index out of range")); return (*this)[i]; } \
+    R123_CUDA_DEVICE reference at(size_type i){ if(i >=  _N) {R123_THROW(std::out_of_range("array index out of range"));}; return (*this)[i]; } \
+    R123_CUDA_DEVICE const_reference at(size_type i) const { if(i >=  _N) {R123_THROW(std::out_of_range("array index out of range"));}; return (*this)[i]; } \
     R123_CUDA_DEVICE size_type size() const { return  _N; }                              \
     R123_CUDA_DEVICE size_type max_size() const { return _N; }                           \
     R123_CUDA_DEVICE bool empty() const { return _N==0; };                               \

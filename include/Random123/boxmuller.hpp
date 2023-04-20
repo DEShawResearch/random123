@@ -68,7 +68,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 namespace r123{
 
-#if !defined(__CUDACC__)
+#if !(defined(__CUDACC__) || defined(__HIPCC__))
 typedef struct { float x, y; } float2;
 typedef struct { double x, y; } double2;
 #else
